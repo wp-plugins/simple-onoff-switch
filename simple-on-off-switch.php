@@ -2,8 +2,8 @@
 /*
 Plugin Name: Simple On/Off Switch
 Plugin URI: http://mattbuechler.com/portfolio/wordpress-plugins/simple-onoff-switch/
-Description: A simple plugin that returns an "On" or "Off" value via a Dashbaord Widget
-Version: 1.0
+Description: A simple plugin that returns an "On" or "Off" value via a Dashbaord Widget. Values are displayed by the [simpleswitch] shortcode.
+Version: 1.1
 Author: Matthew Buechler
 Author URI: http://mattbuechler.com
 License: GPL2
@@ -30,8 +30,6 @@ add_option('simpleswitch', 'on');
 add_option('simpleswitch_onvalue', 'On Value');
 add_option('simpleswitch_offvalue', 'Off Value');
 
-// Create the function to output the contents of our Dashboard Widget
-
 function simpleonoffswitch_form(){ //Function for the On / Off Radio Buttons Form
 	?> 
     <form name="sssubmit" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
@@ -56,7 +54,6 @@ function simpleonoffswitch_form_values() { // Function for the Values form
 }
 
 function simpleonoffswitch_dashboard_widget_function() { //show the dashboard widget and include the functions
-	// Display whatever it is you want to show
 	simpleswitch_set();
 	$values_submit = $_POST['values_submit'];
 	if(isset($_POST['ssvalues_submit'])); {
@@ -84,7 +81,7 @@ function simpleswitch_values_set() { // set the values
 		
 }	}
 }
-function simpleswitch_shortcode() { // display value dependant on status of the switch shorcode
+function simpleswitch_shortcode() { // display value dependant on status of the switch shortcode
 	if(get_option('simpleswitch') == "on") {
 		echo get_option('simpleswitch_onvalue');
 	} 
@@ -96,11 +93,11 @@ add_shortcode('simpleswitch', 'simpleswitch_shortcode'); //set the shortcode
 
 // Create the function use in the action hook
 
-function example_add_dashboard_widgets() {
+function simpleonoffswitch_dashboard_widgets() {
 	wp_add_dashboard_widget('simpleonoffswitch_dashboard_widget', 'Simple On/Off Switch', 'simpleonoffswitch_dashboard_widget_function');	
 }
 // Hook into the 'wp_dashboard_setup' action to register our other functions
-add_action('wp_dashboard_setup', 'example_add_dashboard_widgets' ); // Hint: For Multisite Network Admin Dashboard use wp_network_dashboard_setup instead of wp_dashboard_setup.
+add_action('wp_dashboard_setup', 'simpleonoffswitch_dashboard_widgets' ); 
 
 
 ?>
