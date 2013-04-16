@@ -31,6 +31,9 @@ Email matt.buechler@gmail.com
 
 == Changelog ==
 
+= 1.2 =
+Removed echo for shortcode and changed it to return so the value will be positioned properly.
+
 = 1.1 =
 Added screenshots to readme and assets file.
 Minor naming and description changes

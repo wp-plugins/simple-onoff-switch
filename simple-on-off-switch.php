@@ -3,7 +3,7 @@
 Plugin Name: Simple On/Off Switch
 Plugin URI: http://mattbuechler.com/portfolio/wordpress-plugins/simple-onoff-switch/
 Description: A simple plugin that returns an "On" or "Off" value via a Dashbaord Widget. Values are displayed by the [simpleswitch] shortcode.
-Version: 1.1
+Version: 1.2
 Author: Matthew Buechler
 Author URI: http://mattbuechler.com
 License: GPL2
@@ -83,10 +83,10 @@ function simpleswitch_values_set() { // set the values
 }
 function simpleswitch_shortcode() { // display value dependant on status of the switch shortcode
 	if(get_option('simpleswitch') == "on") {
-		echo get_option('simpleswitch_onvalue');
+		return get_option('simpleswitch_onvalue');
 	} 
 	if(get_option('simpleswitch') == "off") {
-		echo get_option('simpleswitch_offvalue');
+		return get_option('simpleswitch_offvalue');
 	}	
 }
 add_shortcode('simpleswitch', 'simpleswitch_shortcode'); //set the shortcode
